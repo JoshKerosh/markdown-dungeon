@@ -43,3 +43,16 @@ exports.createPages = async ({ graphql, actions }) => {
   });
   // highlight-end
 };
+
+const webpack = require('webpack');
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    plugins: [
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/
+      })
+    ]
+  });
+};
